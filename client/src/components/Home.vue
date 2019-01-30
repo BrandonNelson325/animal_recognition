@@ -15,7 +15,7 @@
 <template>
 
   <div>
-    <img src="../../logo.png" alt="Is it a cat logo">
+    <img src="../../logo.png" alt="Is it a cat logo" style="width:600px;">
     <br>
     <div id="file-drag-drop">
       <form ref="fileform" @click='$refs.file.click()'>
@@ -32,7 +32,7 @@
       style="display:none">
     <br>
     <h2>{{message}}</h2>
-    <img v-if="img" :src=img style="max-height:400px;">
+    <img v-if="img" :src=img style="max-height:300px;">
   </div>
 </template>
 
