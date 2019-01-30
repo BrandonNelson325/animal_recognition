@@ -36,28 +36,6 @@ app.post('/upload', upload.single('file'),(req, res) => {
             cats:cats
         })
     })
-    // const getFaceImage = (grayImg) => {
-    //     const faceRects = classifier.detectMultiScale(grayImg).objects;
-    //     if (!faceRects.length) {
-    //         console.log('failed to detect faces');
-    //     }
-    //     if(faceRects.length) {
-    //         return grayImg.getRegion(faceRects[0]);
-    //     } else return
-    // };
-    // const imgsPath = 'images'
-    // const imgFiles = fs.readdirSync(imgsPath)
-    // const images = imgFiles
-    //     // get absolute file path
-    //     .map(file => path.resolve(imgsPath, file))
-    //     // read image
-    //     .map(filePath => cv.imread(filePath))
-    //     // face recognizer works with gray scale images
-    //     .map(img => img.bgrToGray())
-    //     // detect and extract face
-    //     .map(getFaceImage)
-    //     // face images must be equally sized
-    //     //.map(faceImg => faceImg.resize(80, 80));
     
 })
 
