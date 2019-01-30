@@ -13,7 +13,6 @@
 </style>
 
 <template>
-
   <div>
     <img src="../../logo.png" alt="Is it a cat logo" style="width:600px;">
     <br>

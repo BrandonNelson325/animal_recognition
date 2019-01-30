@@ -36,7 +36,6 @@ app.post('/upload', upload.single('file'),(req, res) => {
             cats:cats
         })
     })
-    
 })
 
 app.listen(process.env.port || 8081)
