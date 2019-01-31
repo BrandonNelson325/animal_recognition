@@ -52,17 +52,41 @@ export default {
   },
   methods: {
     async upload() {
-      var formData = new FormData()
+      let formData = new FormData()
       formData.append('file', this.file)
       const response = await AuthenticationService.upload(formData)
 
-      if (response.data.cats.length) {
-        this.message = 'Looks like you found a cat!'
-      } else {
-        this.message = 'This image doesn\'t appear to be a cat, try another!'
+      // assign all variables to handle display 
+      let prediction = response.data.prediction
+      let is_cat = false
+      let num = 0
+      let answer_string = ''
+      let answer_num = ''
+      
+      // loop over all of the predictions and figure out which one is the highest match.
+      for (var i = 0; i < prediction.length; i++) {
+        let temp = prediction[i].substring(
+            prediction[i].lastIndexOf("(") + 1, 
+            prediction[i].lastIndexOf(")")
+        )
+
+        if ((+temp * 100) > num) {
+          num = temp * 100
+          answer_string = prediction[i].split('(')[0].trim()
+          answer_num = temp
+        }
       }
 
-      var image = "data:"+response.data.type+";base64," + new Buffer(response.data.img.data).toString("base64");
+      // if the string of the answer has "cat" in it, we set the is_cat variable to true
+      if (answer_string.includes("cat")) is_cat = true
+
+      if (is_cat) {
+        this.message = 'Looks like you found a '+answer_string+'! Matched ' + (+answer_num  * 100) + '%'
+      } else {
+        this.message = 'This image doesn\'t appear to be a cat, but you may have found a '+answer_string+'! Matched ' + (+answer_num  * 100) + '%'
+      }
+
+      let image = "data:"+response.data.type+";base64," + new Buffer(response.data.img.data).toString("base64");
       this.img = image
     },
     handleFile(file) {

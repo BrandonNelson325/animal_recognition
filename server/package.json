@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs-node": "^0.2.3",
+    "@tensorflow/tfjs-node-gpu": "^0.2.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "eslint": "^5.12.1",
